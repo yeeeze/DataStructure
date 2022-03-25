@@ -1,4 +1,4 @@
-package DS;
+package DS.List;
 
 import java.util.NoSuchElementException;
 
