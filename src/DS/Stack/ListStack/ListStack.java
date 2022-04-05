@@ -1,3 +1,4 @@
+// 자료구조 과제 #3 (60191363 장예지)
 package DS.Stack.ListStack;
 
 import java.util.EmptyStackException;
