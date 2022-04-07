@@ -1,3 +1,4 @@
+// 자료구조 과제 #2 (60191363 장예지)
 package DS.List.SinglyLinkedList;
 
 public class Node<E extends Comparable<E>>{
