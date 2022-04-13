@@ -1,30 +1,82 @@
-// 자료구조 과제 #3 (60191363 장예지)
-// 괄호 짝 맞추기
+// 자료구조 과제 #4 (60191363 장예지)
+// 중위표기법 -> 후위표기법 변환 메소드
 package DS.Stack.ListStack;
 
 public class Main {
     public static void main(String[] args) {
-        String str = new String("{{(){()}}}");
-        System.out.println(str);
-        checkPaired(str);
+        // 과제4 test
+        String str2 = new String("A-B+C/D");
+        System.out.println("\n" + str2);
+        changeAfter(str2);
 
-        str = new String("{{(){()})()}");
-        System.out.println("\n" + str);
-        checkPaired(str);
+        str2 = new String("A/B-C*D");
+        System.out.println("\n" + str2);
+        changeAfter(str2);
 
-        str = new String("{{()(}}}");
-        System.out.println("\n" + str);
-        checkPaired(str);
+        str2 = new String("A-B*C+D/E-F");
+        System.out.println("\n" + str2);
+        changeAfter(str2);
 
-        str = new String("{{(())}");
-        System.out.println("\n" + str);
-        checkPaired(str);
-
-        str = new String(")}");
-        System.out.println("\n" + str);
-        checkPaired(str);
+        str2 = new String("(A-B)*C-(D/(E+F))");
+        System.out.println("\n" + str2);
+        changeAfter(str2);
     }
 
+    // 과제4
+    private static void changeAfter(String str) {
+        ListStack<Character> stack = new ListStack<>();
+
+        for(int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) > 64) {
+                System.out.print(str.charAt(i));
+            }
+            else if(str.charAt(i) == '(') {
+                stack.push(str.charAt(i));
+            }
+            else if(str.charAt(i) == ')') {
+                while (stack.peek() != '(') {
+                    char pop = stack.pop();
+                    if(!(pop == '(' || pop == ')')) {
+                        System.out.print(pop);
+                    }
+                }
+            }
+            else if(str.charAt(i) == '+' || str.charAt(i) == '-') {
+                if(stack.isEmpty()) {
+                    stack.push(str.charAt(i));
+                }
+                else {
+                    if(stack.peek() == '(') {
+                        stack.push(str.charAt(i));
+                    }
+                    else {
+                        System.out.print(stack.pop());
+                        stack.push(str.charAt(i));
+                    }
+                }
+            }
+            else if(str.charAt(i) == '*' || str.charAt(i) == '/') {
+                if(!stack.isEmpty() && (stack.peek() == '*' || stack.peek() == '/')) {
+                    System.out.print(stack.pop());
+                    stack.push(str.charAt(i));
+                }
+                else {
+                    stack.push(str.charAt(i));
+                }
+            }
+        }
+
+        while(!stack.isEmpty()) {
+            if(stack.peek() == '(') {
+                stack.pop();
+            }
+            else {
+                System.out.print(stack.pop());
+            }
+        }
+    }
+
+    // 과제3
     private static void checkPaired(String str) {
         ListStack<Character> stack = new ListStack<>();
         int mismatch = -1;
