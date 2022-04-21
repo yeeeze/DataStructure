@@ -36,7 +36,7 @@ public class Main {
             else if(str.charAt(i) == ')') {
                 while (stack.peek() != '(') {
                     char pop = stack.pop();
-                    if(!(pop == '(' || pop == ')')) {
+                    if(pop != '(' || pop != ')') {
                         System.out.print(pop);
                     }
                 }
@@ -46,13 +46,24 @@ public class Main {
                     stack.push(str.charAt(i));
                 }
                 else {
-                    if(stack.peek() == '(') {
-                        stack.push(str.charAt(i));
+                    int size = stack.size();
+
+                    for(int j = 0; j < size; j++) {
+                        if(stack.peek() == '(') {
+                            break;
+                        }
+                        else {
+                            System.out.print(stack.pop());
+                        }
                     }
-                    else {
-                        System.out.print(stack.pop());
-                        stack.push(str.charAt(i));
-                    }
+                    stack.push(str.charAt(i));
+//                    if(stack.peek() == '(') {
+//                        stack.push(str.charAt(i));
+//                    }
+//                    else {
+//                        System.out.print(stack.pop());
+//                        stack.push(str.charAt(i));
+//                    }
                 }
             }
             else if(str.charAt(i) == '*' || str.charAt(i) == '/') {

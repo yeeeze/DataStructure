@@ -119,7 +119,7 @@ public class ArrList<E> {
         System.out.println("1번째 항목은 " + s.peek(1)+"이다.");
         System.out.println();
 
-        s.peek(4);
+        //s.peek(4);
     }
 
 }
