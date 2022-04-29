@@ -1,12 +1,12 @@
 package Tree;
 
-public class Node <Key extends Comparable<Key>>{
+public class Node <Key extends Comparable<Key>> {
     private Key item;
     private Node<Key> left;
     private Node<Key> right;
 
     // 노드 생성자
-    public Node(Key newItem, Node lf, Node rt) {
+    public Node(Key newItem, Node<Key> lf, Node<Key> rt) {
         this.item = newItem;
         this.left = lf;
         this.right = rt;
