@@ -1,6 +1,6 @@
 // 자료구조 과제 #5 (60191363 장예지)
 
-package Tree;
+package DS.Tree;
 
 public class Node <Key extends Comparable<Key>> {
     private Key item;
